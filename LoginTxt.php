@@ -2,61 +2,63 @@
 <html lang = "en">
 <head>
 	<meta charset = "UTF-8">
-	<title>Login TXT</title>
+	<title>Login_txt</title>
+	<link rel = "stylesheet" href = "./style.css">
 </head>
 <body>
-	<filedset>
-	<legend><h1 style = "color: blue;">Login</h1></legend>
-	<form action = "#" method = "POST">
-		<label for = "User"> User </label>
+	
+	<header class = "main_header">
+		<?php session_start();?>
+		<a class = "nav_link" href = "index.php">Main_Menu</a>
+		<span class = "nav_header">Login</span>
+	</header>
+
+	<h1 class = "pag_tittle">Login</h1>
+	
+	<form class = "pag_content" action = "#" method = "POST">
+		<label for = "User"><b>User</b></label>
 		<input type = "string" name = "usuario" >
 		<br><br>
-		<label for = "Password">Password </label>
+		<label for = "Password"><b>Password</b></label>
 		<input type = "string" name = "password" >
 		<br><br>
-		<input type = "submit" name = "enviar" value = "leer">
-		
-	</filedset>
-<label>Resultados</label>	
-	<?php 
-	if (isset($_POST["enviar"])){
-		$usuario = $_POST["usuario"];
-		$password = $_POST["password"];
-		$password_encriptada = sha1($password);
-		
-		$fp = fopen("db.txt","r");
-		while(!feof($fp)){
-			$linea = fgets($fp);
-			$linea_split = explode(",", $linea);
-			if($linea_split[1] == $usuario && $linea_split[2] == $password_encriptada){
-				echo "login"."<br>";
-				break;
-				}
-			if($linea_split[1] == $usuario && $linea_split[2] != $password_encriptada){
-				echo "
-				<script>
-				alert('Contraseña incorrecta');
-				window.location = 'LoginTxt.php';
-				</script>
-				";
-				break;
+		<input type = "submit" name = "enviar" value = "Login">
+		<?php 
+		if (isset($_POST["enviar"])){
+			$usuario = $_POST["usuario"];
+			$password = $_POST["password"];
+			$password_encriptada = sha1($password);
+			$fp = fopen("db.txt","r");
+
+			while(!feof($fp)){
+				$linea = fgets($fp);
+				$linea_split = explode(",", $linea);
+				if($linea_split[1] == $usuario && $linea_split[2] == $password_encriptada){
+					$_SESSION['usuario'] = $linea_split[1];
+					header("Location: Content.php");
+					break;
+					}
+				if($linea_split[1] == $usuario && $linea_split[2] != $password_encriptada){
+					echo "
+					<script>
+					alert('Contraseña incorrecta');
+					window.location = 'LoginTxt.php';
+					</script>
+					";
+					break;
+					}
+				if(feof($fp)){
+					echo "<script>
+						alert('Usuario No encontrado');
+						window.location = 'RegisterTxt.php';
+						</script>";
+					}
 			}
-			if(feof($fp)){
-				echo "<script>
-					alert('Usuario No encontrado');
-					window.location = 'RegisterTxt.php';
-					</script>";
-			}
+			fclose($fp);
 		}
-		fclose($fp);
-	}
-	?>
-	<br><br>
-		<input type = "submit" name = "MainMenu" value = "MainMenu">
-	<?php
-	if (isset($_POST["MainMenu"])){
-		header("Location: index.php");
-	}
-	?>
+		?>
+		
+	</form>	
+		
 </body>
 </html>

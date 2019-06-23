@@ -1,0 +1,21 @@
+.main_header{
+	background-color: #34495E;
+	padding: 10px 10px;
+	text-align: right;
+}
+.nav_header{
+	color: white;
+	padding: 0px 20px;
+}
+.pag_tittle{
+	padding: 20px 20px;
+	text-align: center;
+}
+.pag_content{
+	padding: 20px 20px;
+	text-align: center;
+}
+.nav_link{
+	color: white;
+	padding-left: 20px;
+}
