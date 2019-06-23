@@ -2,27 +2,31 @@
 <html lang = "en">
 <head>
 	<meta charset = "UTF-8">
-	<title>Login TXT</title>
+	<title>Main_menu</title>
+	<link rel = "stylesheet" href = "./style.css">
 </head>
-<body> 
-	<header></header>
+<body>
+
+	<header class = "main_header">
+		<span class = "nav_header">Bienvenido</span>
+	</header>
 	
-	<filedset>
-	<legend><h1>Main menu</h1></legend>
-	<form action = "#" method = "POST">
-		<input type = "submit" name = "login" value = "login">
+	<h1 class = "pag_tittle">Main menu</h1>
+	
+	<form class = "pag_content" action = "#" method = "POST">
+		<input type = "submit" name = "login" value = "Login">
 		<br><br>
+		<input type = "submit" name = "register" value = "Register">
 		<br><br>
-		<input type = "submit" name = "register" value = "register">
-		<br><br>
-	</filedset>
-	<?php 
-	if (isset($_POST["login"])){
-		header("Location: LoginTxt.php");
-	}
-	if (isset($_POST["register"])){
-		header("Location: RegisterTxt.php");
-	}
-	?>
+		<?php 
+		if (isset($_POST["login"])){
+			header("Location: LoginTxt.php");
+		}
+		if (isset($_POST["register"])){
+			header("Location: RegisterTxt.php");
+		}
+		?>
+		</form>
+		
 </body>
 </html>
