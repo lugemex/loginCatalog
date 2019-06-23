@@ -6,7 +6,7 @@
 </head>
 <body>
 	<filedset>
-	<legend><h1>Login</h1></legend>
+	<legend><h1 style = "color: blue;">Login</h1></legend>
 	<form action = "#" method = "POST">
 		<label for = "User"> User </label>
 		<input type = "string" name = "usuario" >
