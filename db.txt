@@ -1,3 +1,4 @@
 1,admin,123,admin,admin@s3.com,
 2,a,40bd001563085fc35165329ea1ff5c5ecbdbbeef,a,a,
 3,s3,40bd001563085fc35165329ea1ff5c5ecbdbbeef,uri,s3@s3.com,
+4,user,5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8,augusto,lugemex@gmail.com,

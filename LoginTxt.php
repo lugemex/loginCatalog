@@ -28,9 +28,9 @@
 			$usuario = $_POST["usuario"];
 			$password = $_POST["password"];
 			$password_encriptada = sha1($password);
-			$fp = fopen("db.txt","r");
+			$fp = fopen("db.txt","r");// abre el archivo db.txt sóo de lectura
 
-			while(!feof($fp)){
+			while(!feof($fp)){//hasta que el $fp (filePoniter) llegue al final del archivo
 				$linea = fgets($fp);
 				$linea_split = explode(",", $linea);
 				if($linea_split[1] == $usuario && $linea_split[2] == $password_encriptada){
@@ -59,6 +59,6 @@
 		?>
 		
 	</form>	
-		
+	<footer id="footer"><h1>KraussMaffei</h1></footer>		
 </body>
 </html>
