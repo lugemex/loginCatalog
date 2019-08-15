@@ -1,0 +1,320 @@
+<?php
+session_start(); //esta instrucción debe la primera antes de cualquier etiqueta
+include 'manageFiles.php';
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Homepage</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/content-homepage.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+	  <!-- Navigation por specific user -->
+	  
+	  
+	  </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="Content.php">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          
+		  <form class="nav-item" action = "#" method = "POST">
+            <button class="btn btn-lg btn-primary" name = "logout">Logout</button>
+			<?php
+				if(isset($_POST["logout"])){
+					header("Location: Logout.php");
+				}
+			?>
+          </form>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-lg-3">
+
+        <h1 class="my-4">List of products</h1>
+        <div class="list-group">
+          <a href="#" class="list-group-item">Compact_Robots</a>
+          <a href="#" class="list-group-item">Industrial_Robots</a>
+          <a href="#" class="list-group-item">Linear_Robots</a>
+		  <a href="#" class="list-group-item">Petform_Robots</a>
+		  <a href="#" class="list-group-item">SpruePicker_Robots</a>
+        </div>
+
+      </div>
+      <!-- /.col-lg-3 -->
+
+      <div class="col-lg-9">
+
+		<!-- Carousel-->
+        <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+          </ol>
+          <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+              <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="First slide" width="900" height="350">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Second slide">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Third slide">
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+		
+		
+		
+		<ul>
+			<?php
+			$directoryOfImages='img';
+			$extensionsOfImages=array('gif','jpg','jpeg','tif','tiff','bmp','png');
+			$listImg=getDirFiles($directoryOfImages,$extensionsOfImages);
+			//printListFiles($listImg);
+			//se muestran las imagenes existentes en el catalogo
+			$numElements=count($listImg);
+			if ($numElements>0){
+				for($i=0;$i<$numElements;$i++){	
+			?>
+
+			<img src=<?php echo $listImg[$i];?>  alt="" heigth="150" width="200">
+
+			<?php
+				}
+			}else{
+				die('ERROR: No se encontraron imágenes en el directorio');
+			}    
+			?>
+		</ul>
+		
+		
+		
+		
+		<!-- Catalog-->
+        <div class="row">
+			<!-- Item 1 -->
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" src="img/compactRobots.png" alt="" width="200" height="200"></a>   
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#">Compact_Robots</a>
+                </h4>
+                <h5>$24.99</h5>
+                <p class="card-text">Description [Compact_Robots]</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+              </div>
+            </div>
+          </div>
+			<!-- Item 2 -->
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" src="img/industrialRobots.png" alt="" width="200" height="200"></a>   
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#">Industrial_Robots</a>
+                </h4>
+                <h5>$24.99</h5>
+                <p class="card-text">Description [Industrial_Robots]</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+              </div>
+            </div>
+          </div>
+			<!-- Item 3 -->
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" src="img/linearRobots.png" alt="" width="200" height="200"></a>   
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#">Linear_Robots</a>
+                </h4>
+                <h5>$24.99</h5>
+                <p class="card-text">Description [Linear_Robots]</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+              </div>
+            </div>
+          </div>
+			<!-- Item 4 -->
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" src="img/petForm.png" alt="" width="200" height="200"></a>   
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#">Petform_Robots</a>
+                </h4>
+                <h5>$24.99</h5>
+                <p class="card-text">Description [Petform_Robots]</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+              </div>
+            </div>
+          </div>
+			<!-- Item 5 -->
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" src="img/spruePicker.png" alt="" width="200" height="200"></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#">SpruePicker_Robots</a>
+                </h4>
+                <h5>$24.99</h5>
+                <p class="card-text">Description [SpruePicker_Robots]</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+              </div>
+            </div>
+          </div>
+			<!-- Item 6 -->
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#">Item Six</a>
+                </h4>
+                <h5>$24.99</h5>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.row -->
+
+      </div>
+      <!-- /.col-lg-9 -->
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+<!-- Contact Section -->
+  <section class="contact-section bg-black">
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-md-4 mb-3 mb-md-0">
+          <div class="card py-4 h-100">
+            <div class="card-body text-center">
+              <i class="fas fa-map-marked-alt text-primary mb-2"></i>
+              <h4 class="text-uppercase m-0">Address</h4>
+              <hr class="my-4">
+              <div class="small text-black-50">Qro</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-3 mb-md-0">
+          <div class="card py-4 h-100">
+            <div class="card-body text-center">
+              <i class="fas fa-envelope text-primary mb-2"></i>
+              <h4 class="text-uppercase m-0">Email</h4>
+              <hr class="my-4">
+              <div class="small text-black-50">
+                <a href="#">Robot@Industrial-robots.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-3 mb-md-0">
+          <div class="card py-4 h-100">
+            <div class="card-body text-center">
+              <i class="fas fa-mobile-alt text-primary mb-2"></i>
+              <h4 class="text-uppercase m-0">Phone</h4>
+              <hr class="my-4">
+              <div class="small text-black-50">+1 (555) 442 - 123 45 67</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="social d-flex justify-content-center">
+        <a href="#" class="mx-2">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="#" class="mx-2">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" class="mx-2">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+
+
+</body>
+
+</html>

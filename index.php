@@ -62,10 +62,10 @@
         <input type = "submit" name = "Register" class="btn btn-primary js-scroll-trigger" value = "Register">
 		<?php
 			if (isset($_POST["Login"])){
-				header("Location: Login.html");
+				header("Location: Login.php");
 			}
 			if (isset($_POST["Register"])){
-				header("Location: RegisterTxt.php");
+				header("Location: Register.php");
 			}
 		?>
 		</form>
@@ -83,7 +83,7 @@
           <p class="text-white-50">An industrial robot is a robot system used for manufacturing. Industrial robots are automated, programmable and capable of movement on three or more axis.</p>
         </div>
       </div>
-      <img src="img/newLogo.png" class="img-fluid" alt="">
+      <img src="img/newLogo.png" class="img-fluid" alt="" width="200" height="200" >
     </div>
   </section>
 
