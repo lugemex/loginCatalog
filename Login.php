@@ -43,7 +43,7 @@
 				  <form action = "#" method = "POST">
 					<div class="form-label-group">
 						<!-- User -->
-					  <input type="String" name="usuario" class="form-control" placeholder="Email address" required autofocus> <!-- for type email-->
+					  <input type="String" name="usuario" class="form-control" placeholder="User" required autofocus> <!-- for type email-->
 					  <label for="usuario">User</label>
 					</div>
 
