@@ -1,7 +1,12 @@
 <?php
 session_start(); //esta instrucci�n debe la primera antes de cualquier etiqueta
 include 'manageFiles.php';
+include 'variablesDB.php';
+$directoryOfImages='picturesRobots';
+$extensionsOfImages=array('gif','jpg','jpeg','tif','tiff','bmp','png');
+$listImg=getDirFiles($directoryOfImages,$extensionsOfImages);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -64,173 +69,64 @@ include 'manageFiles.php';
       <div class="col-lg-3">
 
         <h1 class="my-4">List of products</h1>
-        <div class="list-group">
-          <a href="#" class="list-group-item">Compact_Robots</a>
-          <a href="#" class="list-group-item">Industrial_Robots</a>
-          <a href="#" class="list-group-item">Linear_Robots</a>
-		  <a href="#" class="list-group-item">Petform_Robots</a>
-		  <a href="#" class="list-group-item">SpruePicker_Robots</a>
+        <div class="list-group">  
+          <?php        //se muestran las imagenes existentes en el catalogo
+          $myDB=openDB($host,$user,$pw,$bd); 
+          $nameImageBD=mysqli_query($myDB,("SELECT * FROM $tabla"));
+          $q=0;
+          while($queryDB=mysqli_fetch_array($nameImageBD)){
+            $sA=$queryDB['imageName'];
+            //echo $sA."<br>";?>
+            
+            <img src=<?php echo $directoryOfImages."/".$sA;?>  alt=<?php echo $sA; ?> heigth="150" width="200">
+            <?php
+            $q++;
+          }
+          ?>          
         </div>
 
       </div>
       <!-- /.col-lg-3 -->
 
       <div class="col-lg-9">
-
-		<!-- Carousel-->
-        <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
-          <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-          </ol>
-          <div class="carousel-inner" role="listbox">
-            <div class="carousel-item active">
-              <img class="d-block img-fluid" src="img/linearRobots.png" alt="First slide" width="600" height="350">
-            </div>
-            <div class="carousel-item">
-              <img class="d-block img-fluid" src="img/industrialRobots.png" alt="Second slide">
-            </div>
-            <div class="carousel-item">
-              <img class="d-block img-fluid" src="img/spruePicker.png" alt="Third slide">
-            </div>
-          </div>
-          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
-		
-		
-		
-		<ul>
-			<?php
-			$directoryOfImages='picturesRobots';
-			$extensionsOfImages=array('gif','jpg','jpeg','tif','tiff','bmp','png');
-			$listImg=getDirFiles($directoryOfImages,$extensionsOfImages);
-			//printListFiles($listImg);
-			//se muestran las imagenes existentes en el catalogo
-			$numElements=count($listImg);
-			if ($numElements>0){
-				for($i=0;$i<$numElements;$i++){	
-			?>
-
-			<img src=<?php echo $listImg[$i];?>  alt="" heigth="150" width="200">
-
-			<?php
-				}
-			}else{
-				die('ERROR: No se encontraron im�genes en el directorio');
-			}    
-			?>
-		</ul>
-		
-		
-		
-		
 		<!-- Catalog-->
         <div class="row">
-			<!-- Item 1 -->
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="img/compactRobots.png" alt="" width="200" height="200"></a>   
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Compact_Robots</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Description [Compact_Robots]</p>
+          <!-- Item X -->  
+          <?php
+          //$myDB=openDB($host,$user,$pw,$bd); 
+          $dataDB=mysqli_query($myDB,("SELECT * FROM $tabla"));
+          $q=0;
+          while ($queryDB=mysqli_fetch_array($dataDB)){ // obtiene las columnas(campos) de la tabla de la base de datos señalada
+            //echo $queryDB[$Article]."<BR>"; por nombre de campo (tambien es posible por índice de array)
+            $q++;
+            $selectedArticle=$queryDB['Article'];
+            $selectedImage=$queryDB['imageName'];
+            $selectedTitle1=$queryDB['titleHighLights'];
+            $selectedContent1=$queryDB['HighLights'];
+            $selectedTitle2=$queryDB['titleFeatures'];
+            $selectedContent2=$queryDB['Features'];
+            //echo "Consulta exitosa:".$selectedArticle."<br>";
+            echo "
+            <div class=\"col-lg-4 col-md-6 mb-4\">
+              <div class=\"card h-100\">
+                <a href=\"\"><img class=\"card-img-top\" src=\"$directoryOfImages/$selectedImage\" alt=\"\" width=\"200\" height=\"200\"></a>   
+                <div class=\"card-body\">
+                  <h4 class=\"card-title\">
+                    <a href=\"\">$selectedArticle</a>
+                  </h4>
+                  <h5>$selectedTitle1</h5>
+                  <p class=\"card-text\">$selectedContent1</p>
+                  <h5>$selectedTitle2</h5>
+                  <p class=\"card-text\">$selectedContent2</p>
+                </div>
+                <div class=\"card-footer\">
+                  <small class=\"text-muted\">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                </div>
               </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
-			<!-- Item 2 -->
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="img/industrialRobots.png" alt="" width="200" height="200"></a>   
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Industrial_Robots</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Description [Industrial_Robots]</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
-			<!-- Item 3 -->
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="img/linearRobots.png" alt="" width="200" height="200"></a>   
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Linear_Robots</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Description [Linear_Robots]</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
-			<!-- Item 4 -->
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="img/petForm.png" alt="" width="200" height="200"></a>   
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Petform_Robots</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Description [Petform_Robots]</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
-			<!-- Item 5 -->
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="img/spruePicker.png" alt="" width="200" height="200"></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">SpruePicker_Robots</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Description [SpruePicker_Robots]</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
-			<!-- Item 6 -->
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Item Six</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
-
+            </div>";
+          }
+          mysqli_close($myDB);
+          ?>
         </div>
         <!-- /.row -->
 
@@ -241,6 +137,7 @@ include 'manageFiles.php';
     <!-- /.row -->
 
   </div>
+  
   <!-- /.container -->
 
   <!-- Footer -->

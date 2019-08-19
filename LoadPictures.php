@@ -1,25 +1,10 @@
 <?php
 session_start(); //esta instrucción debe la primera antes de cualquier etiqueta
 include 'manageFiles.php';
+include 'variables.php';
 $directoryOfImages='picturesRobots';
 $extensionsOfImages=array('gif','jpg','jpeg','tif','tiff','bmp','png');
-//uso de BD
-$host="127.0.0.1";
-//$host"cataloguekmdb.cvuoorpymdbt.us-east-2.rds.amazonaws.com";
-$user="root";
-//$user="catalogueadmin";
-$pw="";
-//$pw="kraussmaffeidb";
-$bd="kmdb";
-//$bd="";
-$tabla="robots";
-//campos
-$Article="";
-$imageName="";
-$tHL="";
-$HL="";
-$tF="";
-$F="";
+
 
 ?>
 
@@ -97,6 +82,7 @@ $F="";
 		$myDB=openDB($host,$user,$pw,$bd);
 		
 		//mysqli_query($myDB,"INSERT INTO $tabla (DNI,nombre,apellidos,exp_curso) VALUES ('$DNI','nombre','apellid','2')");
+		
 		// C O N S U L T A
 		if(isset($_POST["btnQ"])){
 			// si se oprimio el botón Query consultar artículo de acuerdo con formulario...
