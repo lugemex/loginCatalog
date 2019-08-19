@@ -31,7 +31,7 @@
         <div class="card card-signin flex-row my-5">
           <div class="card-img-left d-none d-md-flex">
             <!-- Background image for card set in CSS! -->
-			<img class="img-fluid mb-3 mb-lg-0" src="img/newLogo.png" alt="">
+			<img class="img-fluid mb-3 mb-lg-0" src="img/newLogo.png" alt="new logo">
           </div>
           <div class="card-body">
             <h5 class="card-title text-center">Register</h5>

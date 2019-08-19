@@ -1,5 +1,5 @@
 <?php
-session_start(); //esta instrucciÛn debe la primera antes de cualquier etiqueta
+session_start(); //esta instrucciÔøΩn debe la primera antes de cualquier etiqueta
 include 'manageFiles.php';
 ?>
 <!DOCTYPE html>
@@ -12,7 +12,7 @@ include 'manageFiles.php';
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Homepage</title>
+  <title>Content</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -38,7 +38,7 @@ include 'manageFiles.php';
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="Content.php">Home
+            <a class="nav-link" href="Content.php"><?php echo "Welcome: ".utf8_decode($_SESSION['usuario']);?>
               <span class="sr-only">(current)</span>
             </a>
           </li>
@@ -86,13 +86,13 @@ include 'manageFiles.php';
           </ol>
           <div class="carousel-inner" role="listbox">
             <div class="carousel-item active">
-              <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="First slide" width="900" height="350">
+              <img class="d-block img-fluid" src="img/linearRobots.png" alt="First slide" width="600" height="350">
             </div>
             <div class="carousel-item">
-              <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Second slide">
+              <img class="d-block img-fluid" src="img/industrialRobots.png" alt="Second slide">
             </div>
             <div class="carousel-item">
-              <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Third slide">
+              <img class="d-block img-fluid" src="img/spruePicker.png" alt="Third slide">
             </div>
           </div>
           <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -109,7 +109,7 @@ include 'manageFiles.php';
 		
 		<ul>
 			<?php
-			$directoryOfImages='img';
+			$directoryOfImages='picturesRobots';
 			$extensionsOfImages=array('gif','jpg','jpeg','tif','tiff','bmp','png');
 			$listImg=getDirFiles($directoryOfImages,$extensionsOfImages);
 			//printListFiles($listImg);
@@ -124,7 +124,7 @@ include 'manageFiles.php';
 			<?php
 				}
 			}else{
-				die('ERROR: No se encontraron im·genes en el directorio');
+				die('ERROR: No se encontraron imÔøΩgenes en el directorio');
 			}    
 			?>
 		</ul>
@@ -268,7 +268,7 @@ include 'manageFiles.php';
               <i class="fas fa-map-marked-alt text-primary mb-2"></i>
               <h4 class="text-uppercase m-0">Address</h4>
               <hr class="my-4">
-              <div class="small text-black-50">Qro</div>
+              <div class="small text-black-50">Pirineos 51 int 13 parque Santiago, Quer√©taro , Qro, 76115</div>
             </div>
           </div>
         </div>
@@ -280,7 +280,7 @@ include 'manageFiles.php';
               <h4 class="text-uppercase m-0">Email</h4>
               <hr class="my-4">
               <div class="small text-black-50">
-                <a href="#">Robot@Industrial-robots.com</a>
+                <a href="#">productos@kraussmaffei.com</a>
               </div>
             </div>
           </div>
