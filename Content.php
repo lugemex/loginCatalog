@@ -46,8 +46,8 @@ include 'manageFiles.php';
 		  <form class="nav-item" action = "#" method = "POST">
             <button class="btn btn-lg btn-primary" name = "logout">Logout</button>
 			<?php
-				if(isset($_POST["logout"])){
-					header("Location: Logout.php");
+				if(isset($_POST["logout"])){	//En caso de enviar Logout con el metodo POST
+					header("Location: Logout.php");	//Se direcciona a Logout.php
 				}
 			?>
           </form>

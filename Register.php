@@ -20,7 +20,7 @@
 
   <!-- Custom styles for this template -->
   <link href="css/Register_style.css" rel="stylesheet">
-	<?php session_start();?>
+	<?php session_start();?> <!-- inicio de session  -->
 </head>
 
 
@@ -69,25 +69,27 @@
               <hr class="my-4">
               
 				<?php
-					if(isset($_POST["enviar"])){
-						$usuario 	= $_POST["usuario"];
+					if(isset($_POST["enviar"])){	//Si el formulario se envio
+						$usuario 	= $_POST["usuario"];	//Recolecta la informacion ingresada
 						$password 	= $_POST["password"];
 						$name 		= $_POST["name"];
 						$correo		= $_POST["correo"];
-						$password_encriptada = sha1($password);
+						$password_encriptada = sha1($password);	//Encripta la informacion con sha1
 						
-						$fp = fopen("db.txt","r+");
+						$fp = fopen("db.txt","r+");	//Abre el archivo db para leer
 						
-						while(!feof($fp)){
-							$linea = fgets($fp);
-							$linea_split = explode(",",$linea); //regresa un array
+						while(!feof($fp)){	//Mientras no sea el final del archivo
+							$linea = fgets($fp);	//obtiene la linea
+							$linea_split = explode(",",$linea); //separa la linea y la regresa en un array
 							
+							//Se compara si el usuario existe y es el de mantenimiento
 							if($usuario == "mantenimiento" && $password_encriptada == "2c564879968adbf9875ea151b00dacc051437447"){
 								echo "<script>
-								alert('Usuario restringido');
+								alert('Usuario restringido');	//se manda un popup
 								window.location = 'index.php';
 								</script>";
 							}
+							//Se compara si el usuario existe manda popup de alerta, "Ya registrado"
 							if($linea_split[1] == $usuario || $linea_split[4] == $correo){
 								echo "<script>
 									alert('Usuario ya registrado');
@@ -95,7 +97,9 @@
 									</script>";
 								break;
 							}
-							if(feof($fp)){
+							
+							if(feof($fp)){	//En caso de que no lo haya encontrado y llega al final
+								//Recolecta la informacion
 								$lastUser = $linea_split[0] + 1;
 								fputs($fp, "\n".
 								$lastUser.",".
@@ -105,12 +109,12 @@
 								$correo.","
 								);
 								echo "<script>
-								alert('Usuario registrado exitosamente');
+								alert('Usuario registrado exitosamente');	//Mensaje de alerta de que el proceso finalizo correctamente
 								window.location = 'Login.php';
 								</script>";
 							}
 						}
-						fclose($fp);
+						fclose($fp);	//Cierra el archivo
 					}
 					?>
 			

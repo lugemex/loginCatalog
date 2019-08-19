@@ -3,3 +3,4 @@
 3,s3,40bd001563085fc35165329ea1ff5c5ecbdbbeef,uri,s3@s3.com,
 4,user,5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8,augusto,lugemex@gmail.com,
 5,123,40bd001563085fc35165329ea1ff5c5ecbdbbeef,123,123,
+6,augusto,2cc16c592f4a5042b57490f9945dce54a76d8513,aguirre,a@a.com,

@@ -1,4 +1,4 @@
-<?php session_start();?>
+<?php session_start();?>	<!-- Mantiene la session activa -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -61,10 +61,10 @@
 				  
 						<!-- PHP stratergy --> 
 					  <?php 
-						if (isset($_POST["enviar"])){
-							$usuario = $_POST["usuario"];
+						if (isset($_POST["enviar"])){	//Si se envio "enviar" con el metodo POST
+							$usuario = $_POST["usuario"];	//Se recolecta la informacion
 							$password = $_POST["password"];
-							$password_encriptada = sha1($password);
+							$password_encriptada = sha1($password);	//Se encripta la contraseña para hacerla coincidir con la guardada
 							
 							//Master admin
 							if($usuario == "mantenimiento" && $password_encriptada == "2c564879968adbf9875ea151b00dacc051437447"){
@@ -72,18 +72,20 @@
 								header("Location: LoadPictures.php");
 							}
 
-							
+							//Se lee el archivo 
 							$fp = fopen("db.txt","r");// abre el archivo db.txt sólo de lectura
 
 							while(!feof($fp)){//hasta que el $fp (filePoniter) llegue al final del archivo
-								$linea = fgets($fp);
-								$linea_split = explode(",", $linea); //regresa un array
+								$linea = fgets($fp);	//Lee cada linea
+								$linea_split = explode(",", $linea); //Separa cada linea y lo regresa como un array
 								
+								//Si el usuario existe y la contraseña corresponde
 								if($linea_split[1] == $usuario && $linea_split[2] == $password_encriptada){
 									$_SESSION['usuario'] = $linea_split[1];
 									header("Location: Content.php");
 									break;
 									}
+								//si el usuario existe pero la contraseña es incorrecta
 								if($linea_split[1] == $usuario && $linea_split[2] != $password_encriptada){
 									echo "
 									<script>
@@ -93,6 +95,7 @@
 									";
 									break;
 									}
+								//Si se recorrio toda la informacion pero no se encontro al usuario
 								if(feof($fp)){
 									echo "<script>
 										alert('Usuario No encontrado');
@@ -100,7 +103,7 @@
 										</script>";
 									}
 							}
-							fclose($fp);
+							fclose($fp);	//Se cierra el archivo
 						}
 						?> 
 				  

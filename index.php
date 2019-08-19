@@ -57,12 +57,12 @@
         <h2 class="text-white-50 mx-auto mt-2 mb-5">Catalogue of industrial robots</h2>
 		
 		<!-- Buttons -->
-		<form action = "#" method = "POST">
-		<input type = "submit" name = "Login" class="btn btn-primary js-scroll-trigger" value = "Login">
-        <input type = "submit" name = "Register" class="btn btn-primary js-scroll-trigger" value = "Register">
-		<?php
-			if (isset($_POST["Login"])){
-				header("Location: Login.php");
+		<form action = "#" method = "POST"> <!-- inicio de formulario -->
+		<input type = "submit" name = "Login" class="btn btn-primary js-scroll-trigger" value = "Login"> <!-- Crear un boton Login -->
+        <input type = "submit" name = "Register" class="btn btn-primary js-scroll-trigger" value = "Register"> <!-- Crear un boton Register -->
+		<?php //Etiquetas usadas para insertar codigo php
+			if (isset($_POST["Login"])){ //Si se manda "Login" con el metodo POST
+				header("Location: Login.php");	//Redirecciona a Login.php
 			}
 			if (isset($_POST["Register"])){
 				header("Location: Register.php");
