@@ -28,7 +28,7 @@ $F="";
 <head>
 	<meta charset = "UTF-8">
 	<title> UploadFiles </title>
-	<link rel = "stylesheet" href = "./style.css">
+	<link rel = "stylesheet" href = "css/loadPictures_style.css">
 	
 </head>
 <body>
@@ -66,14 +66,14 @@ $F="";
 		<input type="text" name="Article" required><br><br>
 	</div>
 	<div>
-		<label for="titleHighLights">titleHighLights</label>
+		<label for="titleHighLights">title for HighLights</label>
 		<input type="text" name="titleHighLights" ><br><br>
 	</div>
 	<div>
 		<textarea name="HighLights" id="HL" cols="50" rows="10">Writing down the content of HighLights</textarea>
 	</div>
 	<div>
-		<label for="titleFeatures">titleFeatures</label>
+		<label for="titleFeatures">title for Features</label>
 		<input type="text" name="titleFeatures"><br><br>
 	</div>
 	<div>
